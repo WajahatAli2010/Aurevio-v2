@@ -1,7 +1,7 @@
 (() => {
-  "use strict";
-  const dot=document.querySelector(".cursor-dot");
-  if(dot && window.matchMedia("(pointer:fine)").matches){
-    window.addEventListener("pointermove",e=>{dot.style.transform=`translate3d(${e.clientX}px,${e.clientY}px,0)`},{passive:true});
-  }
+  const links = document.querySelectorAll('a[href^="#"]');
+  links.forEach(link => link.addEventListener("click", e => {
+    const target = document.querySelector(link.getAttribute("href"));
+    if (target) { e.preventDefault(); target.scrollIntoView({behavior:"smooth"}); }
+  }));
 })();
