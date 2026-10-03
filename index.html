@@ -1,74 +1,1090 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Aurevio — Websites with character.</title>
-<meta name="description" content="Aurevio creates modern, responsive websites for businesses, creators and personal brands.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Aurevio—independent web developer. Crafted digital experiences with precision engineering and intentional design.">
+  <meta name="theme-color" content="#0d0d0a">
+  <meta property="og:title" content="Aurevio—Web crafted with intention.">
+  <meta property="og:description" content="Independent web developer. Strategy, design, engineering.">
+  <meta property="og:type" content="website">
+  <title>Aurevio—Crafted with intention.</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --dark-bg: #0d0d0a;
+      --dark-surface: #161513;
+      --dark-card: #1f1e1a;
+      --dark-border: #2a291f;
+      --dark-text: #f5f3f0;
+      --dark-text-secondary: #b8b3aa;
+      --dark-text-tertiary: #8a8480;
+      --accent-warm: #e8dcc8;
+      --accent-cool: #4a7a8f;
+      
+      --light-bg: #faf8f5;
+      --light-surface: #f5f2ee;
+      --light-card: #f0ebe5;
+      --light-border: #ddd8d0;
+      --light-text: #1a1612;
+      --light-text-secondary: #5a5550;
+      --light-text-tertiary: #8a7f77;
+      
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.12);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.16);
+      --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(232, 220, 200, 0.08);
+      
+      --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      
+      --bg: var(--dark-bg);
+      --surface: var(--dark-surface);
+      --card: var(--dark-card);
+      --border: var(--dark-border);
+      --text: var(--dark-text);
+      --text-secondary: var(--dark-text-secondary);
+      --text-tertiary: var(--dark-text-tertiary);
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: var(--light-bg);
+        --surface: var(--light-surface);
+        --card: var(--light-card);
+        --border: var(--light-border);
+        --text: var(--light-text);
+        --text-secondary: var(--light-text-secondary);
+        --text-tertiary: var(--light-text-tertiary);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    /* Skip Link */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 20px;
+      background: var(--accent-warm);
+      color: var(--bg);
+      padding: 10px 16px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      z-index: 1000;
+    }
+
+    .skip-link:focus {
+      top: 20px;
+    }
+
+    /* Progress Bar */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-warm), var(--accent-cool));
+      width: 0%;
+      z-index: 200;
+      box-shadow: 0 0 16px rgba(232, 220, 200, 0.3);
+    }
+
+    /* Header */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      backdrop-filter: blur(24px);
+      background: linear-gradient(180deg, rgba(13, 13, 10, 0.92), rgba(13, 13, 10, 0.7));
+      border-bottom: 1px solid var(--border);
+      height: 60px;
+      display: flex;
+      align-items: center;
+    }
+
+    .header-wrap {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, var(--accent-warm), var(--accent-cool));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav {
+      display: flex;
+      gap: 48px;
+      list-style: none;
+    }
+
+    .nav a {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      position: relative;
+      overflow: hidden;
+      transition: color 0.3s var(--ease-smooth);
+    }
+
+    .nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--accent-warm);
+      transform: translateX(-100%);
+      transition: transform 0.3s var(--ease-smooth);
+    }
+
+    .nav a:hover {
+      color: var(--text);
+    }
+
+    .nav a:hover::after {
+      transform: translateX(0);
+    }
+
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      padding: 120px 40px 120px;
+      margin-top: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1200px;
+      height: 900px;
+      background: radial-gradient(circle, rgba(232, 220, 200, 0.12), transparent 70%);
+      filter: blur(100px);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-tertiary);
+      margin-bottom: 24px;
+      display: block;
+      animation: fadeInUp 0.8s var(--ease-smooth) 0.1s both;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 10vw, 5.5rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+      font-weight: 500;
+      animation: fadeInUp 0.8s var(--ease-smooth) 0.2s both;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent-warm);
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      max-width: 600px;
+      margin-bottom: 40px;
+      animation: fadeInUp 0.8s var(--ease-smooth) 0.3s both;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.8s var(--ease-smooth) 0.4s both;
+    }
+
+    .btn {
+      padding: 14px 32px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: transparent;
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all 0.3s var(--ease-smooth);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--accent-warm);
+      transform: translateX(-100%);
+      transition: transform 0.3s var(--ease-smooth);
+      z-index: -1;
+    }
+
+    .btn:hover {
+      color: var(--bg);
+      border-color: var(--accent-warm);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn:hover::before {
+      transform: translateX(0);
+    }
+
+    .btn-link {
+      border: none;
+      padding: 0;
+      font-size: 12px;
+    }
+
+    .btn-link::before {
+      display: none;
+    }
+
+    .btn-link:hover {
+      color: var(--accent-warm);
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* Hero Visual */
+    .hero-visual {
+      position: relative;
+      z-index: 2;
+      height: 600px;
+      animation: fadeInUp 0.8s var(--ease-smooth) 0.5s both;
+    }
+
+    .project-card {
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+      transition: all 0.4s var(--ease-smooth);
+    }
+
+    .project-card:hover {
+      transform: translateY(-12px);
+      border-color: var(--accent-warm);
+      box-shadow: 0 28px 60px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(232, 220, 200, 0.12);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .project-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 24px;
+      background: linear-gradient(180deg, transparent, rgba(13, 13, 10, 0.9));
+      color: var(--text);
+      z-index: 10;
+    }
+
+    .project-label small {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-tertiary);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .project-label strong {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+
+    /* Sections */
+    section {
+      padding: 100px 40px;
+      position: relative;
+    }
+
+    section.alt {
+      background: var(--surface);
+    }
+
+    .section-head {
+      margin-bottom: 60px;
+    }
+
+    .section-head p:last-child {
+      font-size: 1.3rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      max-width: 700px;
+      margin-top: 16px;
+    }
+
+    /* Work Section */
+    .work-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 32px;
+    }
+
+    .work-card {
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+      transition: all 0.4s var(--ease-smooth);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .work-card:hover {
+      border-color: var(--accent-warm);
+      transform: translateY(-8px);
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.28);
+    }
+
+    .work-image {
+      width: 100%;
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--accent-warm, 0.1), var(--accent-cool, 0.05));
+    }
+
+    .work-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s var(--ease-smooth);
+    }
+
+    .work-card:hover .work-image img {
+      transform: scale(1.05);
+    }
+
+    .work-content {
+      padding: 28px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .work-content h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .work-content p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+
+    .work-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .work-card:nth-child(3) {
+      grid-column: 1 / -1;
+      grid-template-columns: 2fr 1fr;
+    }
+
+    /* Services Section */
+    .service-intro h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      margin-bottom: 60px;
+      font-weight: 500;
+    }
+
+    .service-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 48px;
+    }
+
+    .service-list article {
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+      transition: transform 0.3s var(--ease-smooth);
+    }
+
+    .service-list article:hover {
+      transform: translateX(8px);
+    }
+
+    .service-list span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-tertiary);
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .service-list h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+
+    .service-list p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .service-list b {
+      font-size: 14px;
+      color: var(--accent-warm);
+    }
+
+    /* About Section */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-stamp {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(232, 220, 200, 0.08), rgba(74, 122, 143, 0.04));
+    }
+
+    .about-stamp span {
+      font-size: 24px;
+      margin: 8px 0;
+    }
+
+    .about-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      margin-bottom: 32px;
+      font-weight: 500;
+    }
+
+    .about-content h2 em {
+      font-style: italic;
+      color: var(--accent-warm);
+    }
+
+    .about-copy p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.9;
+      margin-bottom: 20px;
+    }
+
+    /* Process Section */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      margin-top: 60px;
+    }
+
+    .process-grid article {
+      border-top: 2px solid var(--border);
+      padding-top: 32px;
+      transition: all 0.3s var(--ease-smooth);
+    }
+
+    .process-grid article:hover {
+      border-color: var(--accent-warm);
+    }
+
+    .process-grid span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-tertiary);
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .process-grid h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+
+    .process-grid p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* Contact Section */
+    .contact {
+      text-align: center;
+    }
+
+    .contact-title {
+      margin: 60px 0 80px;
+    }
+
+    .contact-title h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      margin-bottom: 40px;
+      font-weight: 500;
+    }
+
+    .contact-title h2 em {
+      font-style: italic;
+      color: var(--accent-warm);
+    }
+
+    .contact-title a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border: 1px solid var(--accent-warm);
+      border-radius: 6px;
+      background: var(--accent-warm);
+      color: var(--bg);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: all 0.3s var(--ease-smooth);
+    }
+
+    .contact-title a:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .contact-foot {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-tertiary);
+      flex-wrap: wrap;
+    }
+
+    .contact-foot a {
+      color: var(--accent-warm);
+      transition: color 0.3s var(--ease-smooth);
+    }
+
+    .contact-foot a:hover {
+      color: var(--accent-cool);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px;
+      background: var(--surface);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--text-tertiary);
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    footer span:first-child {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .service-list {
+        grid-template-columns: 1fr;
+      }
+
+      .work-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .work-card:nth-child(3) {
+        grid-column: auto;
+        grid-template-columns: auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-wrap,
+      .container,
+      section {
+        padding: 0 20px;
+      }
+
+      .nav {
+        display: none;
+      }
+
+      .hero {
+        padding: 100px 20px;
+      }
+
+      .hero-visual {
+        height: 400px;
+      }
+
+      .contact-foot {
+        gap: 16px;
+        justify-content: center;
+        text-align: center;
+      }
+
+      footer {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-<header class="nav"><a class="logo" href="#home">aurevio<span>.</span></a><nav><a href="#work">Work</a><a href="#services">Services</a><a href="#about">About</a></nav><a class="nav-cta" href="#contact">Start a project <span>↗</span></a></header>
+  <a href="#main" class="skip-link">Skip to content</a>
+  
+  <div class="progress-bar" id="progress"></div>
 
-<main>
-<section class="hero" id="home">
-  <div class="hero-copy">
-    <p class="eyebrow">Independent web developer · Karachi / Pakistan</p>
-    <h1>Websites<br>with <em>character.</em></h1>
-    <p class="hero-text">Modern, responsive websites for businesses and people who want to look established online.</p>
-    <div class="hero-actions"><a class="btn dark" href="#work">See the work <span>↓</span></a><a class="text-link" href="#contact">Let's build yours <span>↗</span></a></div>
-  </div>
-  <div class="hero-art">
-    <div class="art-card art-back"><span>03</span><b>AUREVIO</b></div>
-    <div class="art-card art-front"><img src="assets/noire.png" alt="NOIRÉ website project" loading="eager"><div class="art-label"><span>FEATURED / 01</span><b>NOIRÉ</b></div></div>
-    <div class="scribble">DESIGN<br>THAT<br>GETS<br>NOTICED.</div>
-  </div>
-</section>
+  <header class="site-header">
+    <div class="header-wrap">
+      <a class="logo" href="#home">Aurevio</a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-<section class="marquee"><div>BUSINESS WEBSITES <i>✦</i> LANDING PAGES <i>✦</i> PORTFOLIOS <i>✦</i> REDESIGNS <i>✦</i></div></section>
+  <main id="main">
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <span class="eyebrow">Independent web developer</span>
+        <h1>Engineered for <em>elegance.</em></h1>
+        <p>Thoughtful digital experiences built with clean code and intentional design. I combine strategic thinking with precise engineering to create websites that matter.</p>
+        <div class="cta-group">
+          <button class="btn" onclick="document.getElementById('work').scrollIntoView({ behavior: 'smooth' })">View work</button>
+          <a href="#contact" class="btn btn-link">Get in touch →</a>
+        </div>
+      </div>
 
-<section class="work section" id="work">
-  <div class="section-head"><p class="eyebrow">01 / Selected work</p><p>Three different directions. One standard: make it memorable.</p></div>
-  <div class="work-grid">
-    <a class="work-card work-main" href="https://wajahatali2010.github.io/NOIRE/" target="_blank" rel="noreferrer"><div class="work-image"><img src="assets/noire.png" alt="NOIRÉ project" loading="lazy"><span>01</span></div><div class="work-meta"><div><h2>NOIRÉ</h2><p>Luxury editorial concept</p></div><strong>↗</strong></div></a>
-    <a class="work-card" href="https://wajahatali2010.github.io/VELOR/" target="_blank" rel="noreferrer"><div class="work-image"><img src="assets/velor.png" alt="VÉLOR project" loading="lazy"><span>02</span></div><div class="work-meta"><div><h2>VÉLOR</h2><p>Automotive / premium</p></div><strong>↗</strong></div></a>
-    <a class="work-card work-offset" href="https://wajahatali2010.github.io/work-portfolio/" target="_blank" rel="noreferrer"><div class="work-image"><img src="assets/alex-morgan.png" alt="Alex Morgan portfolio project" loading="lazy"><span>03</span></div><div class="work-meta"><div><h2>ALEX MORGAN</h2><p>Personal portfolio</p></div><strong>↗</strong></div></a>
-  </div>
-</section>
+      <div class="hero-visual">
+        <div class="project-card">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" style="width:100%;height:100%;position:absolute;top:0;left:0;">
+            <defs>
+              <linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#e8dcc8;stop-opacity:0.25" />
+                <stop offset="100%" style="stop-color:#4a7a8f;stop-opacity:0.15" />
+              </linearGradient>
+            </defs>
+            <rect width="600" height="600" fill="#1f1e1a"/>
+            <rect x="60" y="60" width="480" height="480" rx="32" fill="url(#heroGrad)" stroke="#2a291f" stroke-width="1"/>
+            <circle cx="300" cy="280" r="140" fill="#e8dcc8" opacity="0.15"/>
+            <text x="300" y="320" font-family="Playfair Display, serif" font-size="52" font-weight="400" text-anchor="middle" fill="#e8dcc8" opacity="0.4">Premium</text>
+          </svg>
+          <div class="project-label">
+            <small>Featured Project</small>
+            <strong>Precision Design</strong>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section class="services section" id="services">
-  <div class="section-head"><p class="eyebrow">02 / What I build</p><p>Clear offers. No mystery-box agency jargon.</p></div>
-  <div class="service-intro"><h2>A good website should make the <em>right</em> first impression.</h2></div>
-  <div class="service-list">
-    <article><span>01</span><h3>Business websites</h3><p>A polished online home that makes a small business look credible, current and easy to contact.</p><b>↗</b></article>
-    <article><span>02</span><h3>Landing pages</h3><p>Focused pages built around one product, service, offer or action.</p><b>↗</b></article>
-    <article><span>03</span><h3>Portfolio sites</h3><p>Personal websites that turn skills and projects into a strong professional presence.</p><b>↗</b></article>
-    <article><span>04</span><h3>Website redesigns</h3><p>A cleaner, faster and more useful interface when the old site has stopped doing its job.</p><b>↗</b></article>
-  </div>
-</section>
+    <!-- Work Section -->
+    <section id="work" class="alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">01 / Selected Work</span>
+          <p>Projects designed for impact. Built with precision. Delivered with care.</p>
+        </div>
 
-<section class="about section" id="about">
-  <div class="about-stamp">AV<br><span>✦</span><br>2026</div>
-  <div><p class="eyebrow">03 / About Aurevio</p><h2>Small studio.<br><em>Human</em> attention.</h2></div>
-  <div class="about-copy"><p>Aurevio is an independent web development studio focused on modern frontend work. Every site is designed around the actual business, not dragged out of the same template everyone else found.</p><p>Clean structure, responsive layouts, thoughtful motion and a human eye for the details that make a site feel finished.</p></div>
-</section>
+        <div class="work-grid">
+          <a href="#" class="work-card" target="_blank" rel="noopener">
+            <div class="work-image">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+                <rect width="600" height="600" fill="#1f1e1a"/>
+                <defs>
+                  <radialGradient id="w1" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" style="stop-color:#e8dcc8;stop-opacity:0.3"/>
+                    <stop offset="100%" style="stop-color:#4a7a8f;stop-opacity:0.1"/>
+                  </radialGradient>
+                </defs>
+                <circle cx="300" cy="300" r="200" fill="url(#w1)"/>
+              </svg>
+            </div>
+            <div class="work-content">
+              <h3>Brand Identity System</h3>
+              <p>Comprehensive design system for a SaaS platform. 120+ components, refined typography, and scalable patterns.</p>
+              <div class="work-meta">
+                <span>Design</span>
+                <span>2025</span>
+              </div>
+            </div>
+          </a>
 
-<section class="process section">
-  <div class="section-head"><p class="eyebrow">04 / The process</p><p>Simple enough to understand. Serious enough to work.</p></div>
-  <div class="process-grid">
-    <article><span>01</span><h3>Discover</h3><p>Understand the business, audience and goal.</p></article>
-    <article><span>02</span><h3>Design</h3><p>Choose the visual direction and structure.</p></article>
-    <article><span>03</span><h3>Build</h3><p>Turn the direction into responsive frontend.</p></article>
-    <article><span>04</span><h3>Launch</h3><p>Test, polish and put the finished site live.</p></article>
-  </div>
-</section>
+          <a href="#" class="work-card" target="_blank" rel="noopener">
+            <div class="work-image">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+                <rect width="600" height="600" fill="#f0ebe5"/>
+                <rect x="120" y="120" width="360" height="360" rx="24" fill="#e8dcc8" opacity="0.6"/>
+              </svg>
+            </div>
+            <div class="work-content">
+              <h3>High-Performance Landing</h3>
+              <p>Conversion-optimized page. 2.2s load time. 35% improvement in user engagement.</p>
+              <div class="work-meta">
+                <span>Frontend</span>
+                <span>2024</span>
+              </div>
+            </div>
+          </a>
 
-<section class="contact" id="contact">
-  <p class="eyebrow">05 / Start a project</p><div class="contact-title"><h2>Have something<br>worth <em>building?</em></h2><a href="mailto:wajahat.a2010@gmail.com">Let's talk <span>↗</span></a></div>
-  <div class="contact-foot"><span>AUREVIO / DIGITAL STUDIO</span><span>Karachi · Pakistan</span><a href="https://instagram.com/mrpapypants" target="_blank" rel="noreferrer">Instagram ↗</a></div>
-</section>
-</main>
-<footer><span>aurevio.</span><span>Modern websites. Built with intention.</span></footer>
-<script src="script.js"></script>
-</body></html>
+          <a href="#" class="work-card" target="_blank" rel="noopener">
+            <div class="work-image">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
+                <rect width="1200" height="600" fill="#121110"/>
+                <defs>
+                  <linearGradient id="w3" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#e8dcc8;stop-opacity:0.2"/>
+                    <stop offset="100%" style="stop-color:#4a7a8f;stop-opacity:0.1"/>
+                  </linearGradient>
+                </defs>
+                <rect x="100" y="100" width="500" height="400" rx="20" fill="url(#w3)"/>
+                <rect x="700" y="150" width="400" height="300" rx="16" fill="#e8dcc8" opacity="0.12"/>
+              </svg>
+            </div>
+            <div class="work-content">
+              <h3>E-Commerce Redesign</h3>
+              <p>Complete UX overhaul for luxury retail. 28% reduction in cart abandonment. Enhanced user flow.</p>
+              <div class="work-meta">
+                <span>UX/UI</span>
+                <span>2024</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">02 / What I Offer</span>
+          <p>Clear, focused offerings. No corporate jargon. Just solid work.</p>
+        </div>
+
+        <div class="service-intro">
+          <h2>A thoughtful website should be <em>strategic,</em> beautiful, and effective.</h2>
+        </div>
+
+        <div class="service-list">
+          <article>
+            <span>01</span>
+            <h3>Web Design</h3>
+            <p>Interfaces that balance aesthetics and function. Every element purposeful. Built for clarity and trust.</p>
+            <b>→</b>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Frontend Engineering</h3>
+            <p>Clean, performant code. Accessible by default. Progressive enhancement. Built to scale and last.</p>
+            <b>→</b>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Strategy & Direction</h3>
+            <p>Understanding your business, audience, and goals before design begins. Clear direction drives results.</p>
+            <b>→</b>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>Website Redesigns</h3>
+            <p>When your current site isn't working, we rebuild it faster, cleaner, and more useful than before.</p>
+            <b>→</b>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="alt">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-stamp">AV<br><span>✦</span><br>2025</div>
+          <div>
+            <span class="eyebrow">03 / About Aurevio</span>
+            <div class="about-content">
+              <h2>Small studio.<br><em>Serious</em> craft.</h2>
+              <div class="about-copy">
+                <p>Aurevio is an independent web development studio focused on precise, intentional work. I partner with businesses and creators who value clear thinking, thoughtful design, and engineering excellence.</p>
+                <p>Every project begins with strategy. Every design decision serves purpose. Every line of code follows best practices. The result: websites that perform, feel refined, and drive real business results.</p>
+                <p>Available for freelance projects, long-term partnerships, and retainer work. Remote-first. Timezone flexible.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process Section -->
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">04 / The Process</span>
+          <p>A clear, collaborative approach from discovery to launch.</p>
+        </div>
+
+        <div class="process-grid">
+          <article>
+            <span>01</span>
+            <h3>Discover</h3>
+            <p>Deep dive into your business, audience, and goals. Strategic foundation for all decisions ahead.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Design</h3>
+            <p>Thoughtful visual direction. Clean wireframes. Refined interactions. Built to communicate and convert.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Build</h3>
+            <p>Precision engineering. Semantic HTML. Optimized CSS. Progressive JavaScript. Responsive across devices.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>Launch</h3>
+            <p>Testing, refinement, optimization. Deployed with confidence. Ready to perform and scale.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="alt">
+      <div class="container">
+        <span class="eyebrow">05 / Let's Build</span>
+        <div class="contact-title">
+          <h2>Have a project<br>worth <em>shipping?</em></h2>
+          <a href="mailto:hello@aurevio.dev">hello@aurevio.dev</a>
+        </div>
+        <div class="contact-foot">
+          <span>Aurevio</span>
+          <span>Independent Web Developer</span>
+          <a href="#">GitHub ↗</a>
+          <a href="#">Twitter ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Aurevio</span>
+    <span>Handcrafted with precision. Built for impact.</span>
+  </footer>
+
+  <script>
+    // Progress bar
+    const progressBar = document.getElementById('progress');
+    window.addEventListener('scroll', () => {
+      const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      progressBar.style.width = scrollPercent + '%';
+    }, { passive: true });
+
+    // Smooth scroll for buttons
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && document.querySelector(href)) {
+          e.preventDefault();
+          document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
